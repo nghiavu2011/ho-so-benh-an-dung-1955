@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hồ Sơ Bệnh Án Online</title>
+    <!-- Include FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body style="overflow: hidden;"> <!-- Prevent scrolling while on password screen -->
+
+    <!-- PASSWORD GATE -->
+    <div id="password-screen">
+        <div class="flex-center" style="height: 100%;">
+            <div class="auth-box glass-panel">
+                <i class="fa-solid fa-user-doctor"></i>
+                <h2>Hồ Sơ Y Tế Bảo Mật</h2>
+                <p>Vui lòng nhập mã truy cập do gia đình cung cấp để xem hồ sơ bệnh án.</p>
+                <div class="input-group">
+                    <input type="password" id="pass-input" placeholder="Mã truy cập..." autocomplete="off">
+                    <button id="pass-btn">Truy Cập <i class="fa-solid fa-arrow-right" style="font-size: 1rem; margin: 0 0 0 5px; color: inherit; filter: none;"></i></button>
+                    <div id="auth-error"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN APP WRAPPER -->
+    <div id="app-container">
+        <!-- HEADER -->
+        <header class="glass-panel">
+            <div class="patient-info">
+                <div class="patient-avatar">VD</div>
+                <div class="patient-details">
+                    <h1>Mã BN: 2601027005 <span style="font-size: 0.9rem; font-weight: 400; color: var(--text-muted);">(V.H.D)</span></h1>
+                    <p>Nam • 71 tuổi (1955) • Hà Nội</p>
+                </div>
+            </div>
+            <div class="header-actions">
+                <button class="btn-outline" onclick="window.print()"><i class="fa-solid fa-print"></i> In HS</button>
+            </div>
+        </header>
+
+        <!-- NAVIGATION -->
+        <nav class="nav-tabs">
+            <button class="active" data-target="tab-overview"><i class="fa-solid fa-clipboard-list"></i> Tổng Quan</button>
+            <button data-target="tab-timeline"><i class="fa-solid fa-clock-rotate-left"></i> Tiến Trình</button>
+            <button data-target="tab-images"><i class="fa-solid fa-x-ray"></i> Hình Ảnh</button>
+            <button data-target="tab-meds"><i class="fa-solid fa-pills"></i> Đơn Thuốc</button>
+        </nav>
+
+        <!-- TAB TOTAL: OVERVIEW -->
+        <main id="tab-overview" class="tab-content active">
+            <div class="grid-2">
+                <!-- Chẩn đoán nền -->
+                <div class="overview-card glass-panel">
+                    <div class="card-header">
+                        <i class="fa-solid fa-stethoscope"></i>
+                        <h3>Tình Trạng Nền</h3>
+                    </div>
+                    <div class="diagnosis-tags">
+                        <span class="tag danger">[163] Nhồi máu não</span>
+                        <span class="tag warning">[I48.2] Rung nhĩ mãn tính</span>
+                        <span class="tag danger">[I15] Tăng huyết áp thứ phát</span>
+                        <span class="tag info">[E75.5] Rối loạn tích lũy Lipid khác</span>
+                        <span class="tag info">[D29.1] U lành của Tuyến tiền liệt</span>
+                    </div>
+                </div>
+
+                <!-- Tiền sử cấp cứu -->
+                <div class="overview-card glass-panel">
+                    <div class="card-header">
+                        <i class="fa-solid fa-truck-medical"></i>
+                        <h3>Biến Cố Thần Kinh Gần Đây</h3>
+                    </div>
+                    <ul class="info-list">
+                        <li>
+                            <span class="info-label">Đợt 1 (22/01/2026):</span>
+                            <span class="info-value text-warning">Nhồi máu não bán cấp</span>
+                        </li>
+                        <li>
+                            <span class="info-label">Đợt 2 (12/02/2026):</span>
+                            <span class="info-value text-danger" style="font-weight: bold;">Đột quỵ não cấp giờ 1</span>
+                        </li>
+                        <li style="flex-direction: column; gap: 5px;">
+                            <span class="info-label">Di chứng hiện tại:</span>
+                            <span class="info-value" style="text-align: left; font-size: 0.9rem; padding: 12px; background: rgba(0,0,0,0.2); border-radius: 6px; line-height: 1.6;">
+                                • Liệt nửa người trái do NM não tái phát vùng thái dương đỉnh phải (tháng thứ 2) - [I69.4].<br>
+                                • Liệt tay 2/5, liệt chân 1/5.<br>
+                                • Rối loạn cơ tròn (đi vệ sinh chưa tự chủ).<br>
+                                • Rối loạn ngôn ngữ (nói khó).<br>
+                                • Rối loạn tinh thần: sảng sau 18h, ban ngày gà gật (thỉnh thoảng lẫn), vẫn nhận biết được người nói chuyện, khó ngủ về đêm.<br>
+                                <span class="text-warning"><i class="fa-solid fa-triangle-exclamation"></i> Mới:</span> Có dấu hiệu liệt mặt trái (chảy dãi bên trái).
+                            </span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Theo dõi điều trị -->
+                <div class="overview-card glass-panel" style="grid-column: 1 / -1;">
+                    <div class="card-header">
+                        <i class="fa-solid fa-hospital"></i>
+                        <h3>Đang Điều Trị Tại</h3>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 20px; flex-wrap: wrap;">
+                        <div style="flex: 1; min-width: 250px;">
+                            <h4 style="font-size: 1.1rem; color: var(--success); margin-bottom: 5px;">BV Y Học Cổ Truyền TW Nguyễn Bỉnh Khiêm</h4>
+                            <p class="text-muted" style="font-size: 0.9rem;"><i class="fa-solid fa-bed"></i> Nhập viện nội trú (Tối 25/03/2026)</p>
+                        </div>
+                        <div style="height: 40px; width: 1px; background: var(--card-border);"></div>
+                        <div style="flex: 1; min-width: 250px;">
+                            <p class="text-muted" style="font-size: 0.9rem; margin-bottom: 5px;">Tái khám theo hẹn tại:</p>
+                            <h4 style="font-size: 1rem;"><i class="fa-solid fa-plus-square text-primary"></i> Bệnh Viện TW Quân Đội 108</h4>
+                            <p class="text-muted" style="font-size: 0.85rem; margin-top: 4px;">BS Lê Đình Uy (Đơn khám 24/03/2026)</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- TAB 2: TIMELINE -->
+        <main id="tab-timeline" class="tab-content">
+            <div class="glass-panel" style="padding: 20px 40px;">
+                <h2 style="margin-bottom: 30px; font-weight: 600; font-size: 1.3rem;"><i class="fa-solid fa-timeline text-primary"></i> Lịch Sử Khám & Điều Trị</h2>
+                <div class="timeline">
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-icon"><i class="fa-solid fa-leaf text-success"></i></div>
+                        <div class="timeline-content glass-panel" style="border-color: var(--success); box-shadow: 0 0 15px rgba(52,211,153,0.2);">
+                            <div class="timeline-date text-success">Tối 25/03/2026 - Hiện tại</div>
+                            <div class="timeline-title">Nhập viện điều trị tích cực - BV Y học Cổ truyền TW</div>
+                            <div class="timeline-body">
+                                <p>Bệnh nhân đang điều trị nội trú tại BV Y Học Cổ Truyền TW Nguyễn Bỉnh Khiêm theo phác đồ châm cứu, phục hồi chức năng và dùng thuốc nội trú.</p>
+                                <p style="margin-top: 10px; font-size: 0.95rem; font-weight: 500;"><i class="fa-solid fa-notes-medical text-primary"></i> Đang tập vận động tại giường, truyền kháng sinh (theo chỉ định).</p>
+                            </div>
+                            <div class="document-links">
+                                <a href="Don Thuoc/BV YHCT TW/hinh anh cham soc.jpg" target="_blank" class="doc-link"><i class="fa-regular fa-image"></i> Hình ảnh chăm sóc</a>
+                                <a href="Don Thuoc/BV YHCT TW/Tap tai cho 1.jpg" target="_blank" class="doc-link"><i class="fa-regular fa-image"></i> Tập vận động 1</a>
+                                <a href="Don Thuoc/BV YHCT TW/tap tai cho 2.jpg" target="_blank" class="doc-link"><i class="fa-regular fa-image"></i> Tập vận động 2</a>
+                                <a href="Don Thuoc/BV YHCT TW/tap tai cho 3.mp4" target="_blank" class="doc-link"><i class="fa-solid fa-video"></i> Video tập vận động</a>
+                                <a href="Don Thuoc/BV YHCT TW/Thuoc truyen kháng sinh.docx" target="_blank" class="doc-link"><i class="fa-solid fa-file-word text-primary"></i> Đơn truyền kháng sinh</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-icon"><i class="fa-solid fa-kit-medical"></i></div>
+                        <div class="timeline-content glass-panel">
+                            <div class="timeline-date">24/03/2026</div>
+                            <div class="timeline-title">Khám ngoại trú - BV 108</div>
+                            <div class="timeline-body">
+                                <p>Tái khám sau xuất viện đợt 2. Được bác sĩ Lê Đình Uy cấp đơn thuốc ngoại trú mới.</p>
+                            </div>
+                            <div class="document-links">
+                                <a href="Don Thuoc/BV 108/Đơn thuốc _BV_108_24.03.2026.jpg" target="_blank" class="doc-link"><i class="fa-regular fa-image"></i> Hình ảnh Đơn thuốc</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item warning">
+                        <div class="timeline-icon"><i class="fa-solid fa-hospital-user"></i></div>
+                        <div class="timeline-content glass-panel">
+                            <div class="timeline-date">30/01/2026 → 03/03/2026</div>
+                            <div class="timeline-title">Nội trú 1 tháng - BV 108</div>
+                            <div class="timeline-body">
+                                <p>Bệnh nhân điều trị nội trú hơn 1 tháng tại BV 108 phục hồi sau đột quỵ.</p>
+                            </div>
+                            <div class="document-links">
+                                <a href="Don Thuoc/BV 108/Sau khi Xuat Vien_30012026.pdf" target="_blank" class="doc-link"><i class="fa-solid fa-file-pdf text-danger"></i> Tóm tắt xuất viện (30/01)</a>
+                                <a href="Don Thuoc/BV 108/Thuoc BN Dung ( Đợt 3_12.02_03.03)_BV108.xlsx" target="_blank" class="doc-link"><i class="fa-solid fa-file-excel text-success"></i> Đơn thuốc đợt 3</a>
+                                <a href="Don Thuoc/BV 108/260315_Don Thuoc Dieu Tri YHCT-108 edited.xlsx" target="_blank" class="doc-link"><i class="fa-solid fa-file-excel text-success"></i> Đơn thuốc YHCT</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item danger">
+                        <div class="timeline-icon"><i class="fa-solid fa-truck-fast"></i></div>
+                        <div class="timeline-content glass-panel">
+                            <div class="timeline-date">12/02/2026</div>
+                            <div class="timeline-title">ĐỢT 2: Cấp cứu Đột quỵ não cấp - BV 108</div>
+                            <div class="timeline-body">
+                                <p><strong>Chẩn đoán:</strong> Đột quỵ não cấp giờ 1. <br>
+                                <strong>Biểu hiện:</strong> Yếu liệt nửa người trái, sức cơ tay trái 4/5, chân trái 2/5 (Khoa Cấp cứu C1.3 - BS Lê Đức Giang).</p>
+                                <p style="margin-top: 10px; font-size: 0.85rem;"><i class="fa-solid fa-circle-info text-primary"></i> <i>Thực hiện chụp CT Scan não và siêu âm tổng quát.</i></p>
+                            </div>
+                            <div class="document-links">
+                                <a href="Don Thuoc/BV 108/Kham Cap Cuu_12.02.2026/Ket Qua Kham.jpg" target="_blank" class="doc-link"><i class="fa-regular fa-image"></i> Phiếu Khám</a>
+                                <a href="Don Thuoc/BV 108/Kham Cap Cuu_12.02.2026/CT scan.pdf" target="_blank" class="doc-link"><i class="fa-solid fa-file-pdf text-danger"></i> Kết quả CT Scan</a>
+                                <a href="Don Thuoc/BV 108/Kham Cap Cuu_12.02.2026/Dong Mau.pdf" target="_blank" class="doc-link"><i class="fa-solid fa-file-pdf text-danger"></i> TB Đông Máu</a>
+                                <a href="Don Thuoc/BV 108/Kham Cap Cuu_12.02.2026/Huyet Hoc.pdf" target="_blank" class="doc-link"><i class="fa-solid fa-file-pdf text-danger"></i> TB Huyết học</a>
+                                <a href="Don Thuoc/BV 108/Kham Cap Cuu_12.02.2026/Sinh Hoa Mau.pdf" target="_blank" class="doc-link"><i class="fa-solid fa-file-pdf text-danger"></i> Sinh Hóa Máu</a>
+                                <a href="Don Thuoc/BV 108/Kham Cap Cuu_12.02.2026/Sieu Anm O Bung.pdf" target="_blank" class="doc-link"><i class="fa-solid fa-file-pdf text-danger"></i> S.A Ổ Bụng</a>
+                                <a href="Don Thuoc/BV 108/Kham Cap Cuu_12.02.2026/Sieu Am Doppler tim,van tim.pdf" target="_blank" class="doc-link"><i class="fa-solid fa-file-pdf text-danger"></i> S.A Tim</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item danger">
+                        <div class="timeline-icon"><i class="fa-solid fa-brain"></i></div>
+                        <div class="timeline-content glass-panel">
+                            <div class="timeline-date">22/01/2026</div>
+                            <div class="timeline-title">ĐỢT 1: Nhồi máu não bán cấp - BV 108</div>
+                            <div class="timeline-body">
+                                <p>Phòng 2.22 - Khám Nội Thần Kinh (Ths. Trần Thị Thúy Hằng).</p>
+                            </div>
+                            <div class="document-links">
+                                <a href="Don Thuoc/BV 108/Kham Dot Quy Dot 1_22.01.2026/Ket qua 1.jpg" target="_blank" class="doc-link"><i class="fa-regular fa-image"></i> Kết quả chẩn đoán</a>
+                                <a href="Don Thuoc/BV 108/Kham Dot Quy Dot 1_22.01.2026/MRI.pdf" target="_blank" class="doc-link"><i class="fa-solid fa-file-pdf text-danger"></i> Kết luận MRI</a>
+                                <a href="Don Thuoc/BV 108/Kham Dot Quy Dot 1_22.01.2026/Sinh Hoa Mau.pdf" target="_blank" class="doc-link"><i class="fa-solid fa-file-pdf text-danger"></i> Sinh hóa máu</a>
+                                <a href="Don Thuoc/BV 108/Kham Dot Quy Dot 1_22.01.2026/Sinh Hoa Tuyen Giap.pdf" target="_blank" class="doc-link"><i class="fa-solid fa-file-pdf text-danger"></i> Tuyến giáp</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-icon"><i class="fa-solid fa-heart-pulse"></i></div>
+                        <div class="timeline-content glass-panel">
+                            <div class="timeline-date">19/01/2026</div>
+                            <div class="timeline-title">Khám Tim mạch - BV Đại Học Y HN</div>
+                            <div class="timeline-body">
+                                <p>Khám kiểm tra định kỳ thuốc. Chẩn đoán: I10 Bệnh lý tăng HA / Suy tim EF bảo tồn / Rung nhĩ.</p>
+                            </div>
+                            <div class="document-links">
+                                <a href="Don Thuoc/BV DH Y/z7495411203686_fbbdff191e257d8afbd2c569c1a8ef2f.jpg" target="_blank" class="doc-link"><i class="fa-regular fa-image"></i> Đơn thuốc</a>
+                                <a href="Don Thuoc/BV DH Y/z7495411207884_56ecdecddbb4e4e0d376732a9291d4ad.jpg" target="_blank" class="doc-link"><i class="fa-regular fa-image"></i> Bảng kê chi phí</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-icon" style="background: rgba(255,255,255,0.1); border-color: var(--text-muted);"><i class="fa-regular fa-folder-open" style="color: var(--text-muted);"></i></div>
+                        <div class="timeline-content glass-panel" style="border-style: dashed;">
+                            <div class="timeline-date text-muted">Năm 2025</div>
+                            <div class="timeline-title">Tiền sử bệnh án 2025</div>
+                            <div class="timeline-body">
+                                <p>Hồ sơ lưu trữ các đợt khám trong năm 2025.</p>
+                            </div>
+                            <div class="document-links">
+                                <a href="Don Thuoc/TIEN SU BENH 2025/Kham Benh 2025_Mr_Dung.pdf" target="_blank" class="doc-link"><i class="fa-solid fa-file-pdf text-danger"></i> Hồ sơ khám bệnh 2025.pdf</a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </main>
+
+        <!-- TAB 3: IMAGES / SCANS -->
+        <main id="tab-images" class="tab-content">
+            <div class="glass-panel" style="padding: 30px;">
+                
+                <div class="gallery-section">
+                    <div class="gallery-header">
+                        <h3 class="text-danger"><i class="fa-solid fa-skull"></i> CT Scan Não (Cấp cứu đợt 2 - 12/02/2026)</h3>
+                    </div>
+                    <!-- Generated by JS -->
+                    <div id="ct-gallery" class="gallery-grid"></div>
+                </div>
+
+                <div style="height: 1px; background: var(--card-border); margin: 40px 0;"></div>
+
+                <div class="gallery-section">
+                    <div class="gallery-header">
+                        <h3 class="text-warning"><i class="fa-solid fa-brain"></i> MRI Não (Đợt 1 - 22/01/2026)</h3>
+                    </div>
+                    <!-- Generated by JS -->
+                    <div id="mri-gallery" class="gallery-grid"></div>
+                </div>
+
+            </div>
+        </main>
+
+        <!-- TAB 4: MEDICATIONS -->
+        <main id="tab-meds" class="tab-content">
+            <div class="glass-panel" style="padding: 30px;">
+                
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                    <h2 style="font-size: 1.3rem; color: var(--success);"><i class="fa-solid fa-kit-medical"></i> Điều trị Nội trú (BV YHCT TW)</h2>
+                    <span class="tag success">Đang điều trị (từ 25/03)</span>
+                </div>
+
+                <div class="glass-panel" style="background: rgba(52, 211, 153, 0.05); border-left: 4px solid var(--success); padding: 25px; margin-bottom: 30px;">
+                    <h3 style="color: var(--success); margin-bottom: 12px; font-size: 1.1rem;"><i class="fa-solid fa-leaf"></i> Phân bổ thuốc điều trị hàng ngày</h3>
+                    <p style="color: var(--text-muted); margin-bottom: 20px; font-size: 0.95rem;">Theo chỉ định nội trú tại BV Y Học Cổ Truyền TW Nguyễn Bỉnh Khiêm, bệnh nhân hiện đang sử dụng các cữ thuốc sau:</p>
+                    <div style="display: flex; gap: 15px; flex-wrap: wrap;">
+                        <a href="Don Thuoc/BV YHCT TW/Sang.jpg" target="_blank" class="doc-link" style="border-color: var(--warning);"><i class="fa-regular fa-image text-warning"></i> Đơn thuốc: Cữ Sáng</a>
+                        <a href="Don Thuoc/BV YHCT TW/Toi.jpg" target="_blank" class="doc-link" style="border-color: var(--primary);"><i class="fa-regular fa-image text-primary"></i> Đơn thuốc: Cữ Tối</a>
+                        <a href="Don Thuoc/BV YHCT TW/Thuoc truyen kháng sinh.docx" target="_blank" class="doc-link" style="border-color: var(--danger);"><i class="fa-solid fa-file-word text-danger"></i> Đơn truyền kháng sinh</a>
+                    </div>
+                </div>
+
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; margin-top: 40px;">
+                    <h2 style="font-size: 1.2rem; color: #475569;"><i class="fa-solid fa-clipboard-list"></i> Đơn thuốc ngoại trú (BV 108)</h2>
+                    <span class="tag warning">Ngày 24/03/2026</span>
+                </div>
+
+                <div class="medication-table-wrapper glass-panel">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th style="width: 50px;">STT</th>
+                                <th>Tên Thuốc / Hàm Lượng</th>
+                                <th>Liều Dùng</th>
+                                <th>Số Lượng</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>
+                                    <span class="med-name">Cardisav 10mg/160mg</span>
+                                </td>
+                                <td>Uống ngày 1/2 viên, sau ăn sáng</td>
+                                <td>30 Viên</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>
+                                    <span class="med-name">Tominfast 40mg</span>
+                                </td>
+                                <td>Uống sau ăn tối 30 phút ngày 1 lần, mỗi lần 1 viên</td>
+                                <td>30 Viên</td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>
+                                    <span class="med-name">Carmotop 25mg</span>
+                                </td>
+                                <td>Uống sáng 1 viên, tối uống 1 viên sau ăn</td>
+                                <td>60 Viên</td>
+                            </tr>
+                            <tr>
+                                <td>4</td>
+                                <td>
+                                    <span class="med-name">Xaravix 20 <span class="lasa-alert">Chú ý Liều</span></span>
+                                </td>
+                                <td>Uống sau bữa ăn ngày 1 lần, mỗi lần 1 viên</td>
+                                <td>30 Viên</td>
+                            </tr>
+                            <tr>
+                                <td>5</td>
+                                <td>
+                                    <span class="med-name">Gastevin 30mg</span>
+                                </td>
+                                <td>Uống trước ăn sáng 30 phút ngày 1 lần, mỗi lần 1 viên</td>
+                                <td>30 Viên</td>
+                            </tr>
+                            <tr>
+                                <td>6</td>
+                                <td>
+                                    <span class="med-name">Mirzaten 30mg</span>
+                                </td>
+                                <td>Uống một lần vào buổi tối ngày 1 lần, mỗi lần nửa viên (1/2)</td>
+                                <td>15 Viên</td>
+                            </tr>
+                            <tr>
+                                <td>7</td>
+                                <td>
+                                    <span class="med-name">Olanxol 10mg <span class="lasa-alert">Thuốc Thần Kinh</span></span>
+                                </td>
+                                <td>Uống một lần vào buổi tối ngày 1 lần, mỗi lần nửa viên (1/2)</td>
+                                <td>15 Viên</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                <div style="margin-top: 30px; padding: 20px; background: rgba(56, 189, 248, 0.05); border-left: 4px solid var(--primary); border-radius: 4px;">
+                    <h4 style="margin-bottom: 10px; color: var(--primary);"><i class="fa-solid fa-clock-rotate-left"></i> Lịch Sử Thuốc Nền (BV ĐH Y HN - 19/01)</h4>
+                    <p style="font-size: 0.9rem; color: var(--text-muted); line-height: 1.8;">
+                        • Bisoprolol (CONCOR COR) 2.5mg (1v sáng)<br>
+                        • Valsartan (DIOVAN) 80mg (1/2v sáng)<br>
+                        • Spironolaction + Furosemid (SAVISPIRONO-PLUS) 50mg+20mg (1v sáng)<br>
+                        • Empagliflozin (JARDIANCE) 25mg (1/2v sau ăn tối)<br>
+                        • Edoxaban (FIENTALF) 30mg (1v sau ăn tối)<br>
+                        • Pitavastatin (PITATOR) 4mg (1v sau ăn tối)
+                    </p>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <!-- LIGHTBOX OVERLAY -->
+    <div id="lightbox">
+        <div class="lightbox-close"><i class="fa-solid fa-xmark"></i></div>
+        <img id="lightbox-img" src="" alt="Scan Image">
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
