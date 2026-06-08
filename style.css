@@ -54,6 +54,7 @@ body {
 .text-success { color: var(--success); }
 .text-warning { color: var(--warning); }
 .text-danger { color: var(--danger); }
+.text-info { color: var(--primary); font-weight: 600; }
 .text-muted { color: var(--text-muted); }
 .flex-center { display: flex; justify-content: center; align-items: center; }
 
@@ -484,12 +485,81 @@ th {
 }
 td { font-size: 1rem; color: #1e293b; }
 tr:hover td { background: #f0fdf4; }
+.table-group-header { background: #f8fafc; font-weight: 700; color: var(--primary); font-size: 0.85rem; letter-spacing: 1px; }
+.table-group-header td { padding: 10px 16px; border-bottom: 2px solid #e2e8f0; }
 .med-name { font-weight: 700; color: #0f172a; display: block; font-size: 1.05rem; }
 .lasa-alert {
   display: inline-block; padding: 3px 8px;
   background: #fef2f2; color: var(--danger);
   border-radius: 6px; font-size: 0.75rem; font-weight: 700;
   margin-left: 10px; border: 1px solid #fecaca;
+}
+
+/* === COLLAPSIBLE ACCORDION FOR PRESCRIPTIONS === */
+details.prescription-accordion {
+  margin-bottom: 25px;
+  border-radius: 12px;
+  border: 1px solid var(--card-border);
+  background: white;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
+  transition: all 0.3s ease;
+}
+details.prescription-accordion[open] {
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+  border-color: #cbd5e1;
+}
+details.prescription-accordion summary {
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 24px;
+  background: linear-gradient(135deg, #f8fafc, #f1f5f9);
+  cursor: pointer;
+  user-select: none;
+  font-weight: 700;
+  color: #0f172a;
+  font-size: 1.05rem;
+  border-bottom: 1px solid var(--card-border);
+  transition: background 0.2s;
+}
+details.prescription-accordion summary::-webkit-details-marker {
+  display: none;
+}
+details.prescription-accordion summary:hover {
+  background: linear-gradient(135deg, #f1f5f9, #e2e8f0);
+}
+details.prescription-accordion .accordion-content {
+  padding: 24px;
+  background: white;
+  animation: slideUp 0.3s ease;
+}
+details.prescription-accordion summary .summary-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+details.prescription-accordion summary .summary-arrow {
+  transition: transform 0.3s ease;
+  font-size: 0.95rem;
+  color: var(--text-muted);
+}
+details.prescription-accordion[open] summary .summary-arrow {
+  transform: rotate(180deg);
+  color: var(--success);
+}
+details.prescription-accordion.latest-prescription {
+  border-top: 4px solid var(--success);
+}
+details.prescription-accordion.latest-prescription[open] {
+  border-color: var(--success);
+}
+details.prescription-accordion.history-prescription {
+  border-top: 4px solid #94a3b8;
+}
+details.prescription-accordion.history-prescription[open] {
+  border-color: #94a3b8;
 }
 
 /* Lightbox */
@@ -519,6 +589,49 @@ tr:hover td { background: #f0fdf4; }
 
 @keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
 @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+/* === MEDIA TIMELINE DIARY === */
+.media-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 20px;
+  padding: 10px 0;
+}
+.media-card {
+  background: #f8fafc;
+  border-radius: 12px;
+  border: 1px solid var(--card-border);
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.02);
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+.media-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+  border-color: #cbd5e1;
+}
+.media-card img, .media-card video {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  background: #000;
+  display: block;
+}
+.media-card img {
+  cursor: pointer;
+}
+.media-card .media-label {
+  padding: 12px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #1e293b;
+  text-align: center;
+  border-top: 1px solid var(--card-border);
+  background: white;
+  margin-top: auto;
+}
 
 @media (max-width: 768px) {
   .nav-tabs { flex-wrap: wrap; }

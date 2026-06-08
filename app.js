@@ -90,6 +90,10 @@ document.addEventListener('DOMContentLoaded', () => {
   renderGallery('mri-gallery', 'Don Thuoc/BV 108/Kham Dot Quy Dot 1_22.01.2026/MRI_', 12);
   // Create CT Gallery dynamically
   renderGallery('ct-gallery', 'Don Thuoc/BV 108/Kham Cap Cuu_12.02.2026/CT Scan_', 10);
+  // Create BV108 MRI Gallery
+  renderGallery('mri-gallery-bv108', 'Don Thuoc/BV 108/Kham Dot Quy Dot 1_22.01.2026/MRI_', 12);
+  // Create BV108 CT Gallery
+  renderGallery('ct-gallery-bv108', 'Don Thuoc/BV 108/Kham Cap Cuu_12.02.2026/CT Scan_', 10);
 });
 
 // Function to dynamically generate image gallery
